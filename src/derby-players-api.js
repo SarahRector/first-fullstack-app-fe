@@ -1,6 +1,6 @@
 import request from 'superagent';
 
-const URL = 'https://git.heroku.com/first-fullstack-app-be.git';
+const URL = 'https://first-fullstack-app-be.herokuapp.com';
 
 export function fetchDerbyPlayers() {
     return request.get(`${URL}/derby_players`);

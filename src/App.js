@@ -1,36 +1,51 @@
-import React from 'react';
-import { fetchDerbyPlayers } from './derby-players-api.js';
+import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link
+} from 'react-router-dom';
+import ListPage from './ListPage.js';
+import CreatePage from './CreatePage.js';
+import DetailPage from './DetailPage.js';
 import './App.css';
 
-class App extends React.Component {
-  state = {
-    derby_players: []
-  }
+export default class App extends Component {
+    render() {
+        return (
+            <div className="App">
+            <header className="App-header">    
+                <Router>
+                    <main>
 
-  componentDidMount = async () => {
-    const data = await fetchDerbyPlayers()
-
-    this.setState({
-      derby_players: data.body
-    })
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h2>Derby Players:</h2>
-          {
-            this.state.derby_players.map((derby_player) => {
-              return <div style={{ margin: 5, padding: 5, border: 'solid 3px purple'}}>
-                {derby_player.derby_name} : {derby_player.jersey_number} : {derby_player.is_retired} : {derby_player.position}
-              </div>
-            })
-          }
-        </header>
-        </div>
-    );
-  }
-  }
-
-export default App;
+                    <div className="sidebar">
+                    <Link to='/create'>Create</Link>
+                    <Link to='/'>List</Link>
+                    </div>
+                    <div className="content">
+                    <Switch>
+                        <Route 
+                            path="/" 
+                            exact
+                            render={(routerProps) => <ListPage {...routerProps} />} 
+                        />
+                        <Route 
+                            path="/create" 
+                            exact
+                            render={(routerProps) => <CreatePage {...routerProps} />} 
+                        />
+                        <Route 
+                            path="/detail/:id" 
+                            exact
+                            render={(routerProps) => <DetailPage {...routerProps} />} 
+                        />
+                    </Switch>
+                    </div>
+                    
+                    </main>
+                    </Router>
+            </header>
+            </div>
+        )
+    }
+}

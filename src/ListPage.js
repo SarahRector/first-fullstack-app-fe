@@ -1,6 +1,7 @@
 import React from 'react';
-import { fetchDerbyPlayers, createDerbyPlayer } from './derby-players-api.js';
+import { fetchDerbyPlayers } from './derby-players-api.js';
 import { Link } from 'react-router-dom';
+import './App.css';
 
 class ListPage extends React.Component {
   state = {
@@ -19,7 +20,7 @@ class ListPage extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h2>Derby Players:</h2>
+          <h2>My Fantasy Derby Team:</h2>
           {
             this.state.derby_players.map((derby_player) => {
               return <Link className="derby_player" to={`/detail/${derby_player.id}`} key={`${derby_player.id}-${derby_player.derby_name}`}>

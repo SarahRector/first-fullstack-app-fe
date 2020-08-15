@@ -1,32 +1,45 @@
 import React, { Component } from 'react';
-import { createDerbyPlayer } from './derby-players-api.js';
+import { createDerbyPlayer, fetchPositions } from './derby-players-api.js';
 import './App.css';
 
 export default class CreatePage extends Component {
     state = {
-        derby_name: '',
-        jersey_number: 123,
-        is_retired: false,
-        position: '',
+        derby_name: 'Smarty Pants',
+        jersey_number: 5,
+        is_retired: true,
+        position_id: 3,
+        positions: [],
+    }
+
+    componentDidMount = async () => {
+        const positionsData = await fetchPositions();
+
+        this.setState({
+            positions: positionsData.body
+        })
     }
 
     handleSubmit = async (e) => {
         e.preventDefault();
 
+        try {
         await createDerbyPlayer({
             derby_name: this.state.derby_name,
             jersey_number: this.state.jersey_number,
             is_retired: this.state.is_retired,
-            position: this.state.position
+            position_id: this.state.position_id
         });
 
         this.setState({
             derby_name: '',
             jersey_number: 123,
             is_retired: false,
-            position: '',
-        })
+            position_id: 3,
+        });
+    } catch(e) {
+        console.log(e.message)
     }
+}
 
     handleNameChange = e => {
         this.setState({ derby_name: e.target.value });
@@ -41,7 +54,7 @@ export default class CreatePage extends Component {
     }
 
     handlePositionChange = e => {
-        this.setState({ position: e.target.value });
+        this.setState({ position_id: e.target.value });
     }
 
     render() {

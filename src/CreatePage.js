@@ -7,7 +7,7 @@ export default class CreatePage extends Component {
         derby_name: 'Smarty Pants',
         jersey_number: 5,
         is_retired: true,
-        position_id: 3,
+        position_id: 1,
         positions: [],
     }
 
@@ -34,8 +34,11 @@ export default class CreatePage extends Component {
             derby_name: '',
             jersey_number: 123,
             is_retired: false,
-            position_id: 3,
+            position_id: 1,
         });
+
+        this.props.history.push('/');
+
     } catch(e) {
         console.log(e.message)
     }
@@ -79,10 +82,10 @@ export default class CreatePage extends Component {
                     </label>
                     <label>
                         Position:
-                        <select onChange={this.handlePositionChange} placeholder="Blocker">
-                            <option value="Blocker">Blocker</option>
-                            <option value="Jammer">Jammer</option>
-                            <option value="Pivot">Pivot</option>
+                        <select onChange={this.handlePositionChange}>
+                            <option value={1}>Blocker</option>
+                            <option value={2}>Jammer</option>
+                            <option value={3}>Pivot</option>
                         </select>
                     </label>
                     <button>Add Player</button>

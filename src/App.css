@@ -49,4 +49,10 @@ main {
   flex-direction: column;
 }
 
+.single_player {
+  margin: 5px;
+  padding: 5px;
+  border: solid 3px purple;
+}
+
 

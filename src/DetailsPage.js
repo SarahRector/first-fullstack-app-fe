@@ -7,7 +7,7 @@ export default class DetailsPage extends Component {
         derby_name: 'Smarty Pants',
         jersey_number: 5,
         is_retired: true,
-        position_id: 3,
+        position_id: 1,
         position: '',
         positions: [],
     }
@@ -29,7 +29,7 @@ export default class DetailsPage extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log(this.state.position_id);
         try {
             await updateDerbyPlayer(
                 this.props.match.params.id,
@@ -47,6 +47,8 @@ export default class DetailsPage extends Component {
                 is_retired: false,
                 derby_player: updatedPlayer.body,
             });
+
+            this.props.history.push('/');
 
             } catch(e) {
                 console.log(e.message)
@@ -76,11 +78,12 @@ export default class DetailsPage extends Component {
     }
 
     render() {
+        console.log(this.state.derby_player);
         return (
             <div>
             <div>
                 <p>You just added {this.state.derby_player.derby_name} to your team!</p>
-                <p>Their jersey number is {this.state.derby_player.jersey_number} and you are playing them as a {this.state.position}.</p>
+                <p>Their jersey number is {this.state.derby_player.jersey_number} and you are playing them as a {this.state.derby_player.player_position}.</p>
             </div>
             <div className="form">
                 <h2>Update this Derby Player?</h2>
@@ -103,9 +106,9 @@ export default class DetailsPage extends Component {
                     <label>
                         Position:
                         <select onChange={this.handlePositionChange} placeholder="Blocker">
-                            <option value="Blocker">Blocker</option>
-                            <option value="Jammer">Jammer</option>
-                            <option value="Pivot">Pivot</option>
+                            <option value={1}>Blocker</option>
+                            <option value={2}>Jammer</option>
+                            <option value={3}>Pivot</option>
                         </select>
                     </label>
                     <button onClick={this.handleSubmit}>Update Player</button>

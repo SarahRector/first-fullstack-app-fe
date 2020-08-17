@@ -24,8 +24,11 @@ class ListPage extends React.Component {
           {
             this.state.derby_players.map((derby_player) => {
               return <Link className="derby_player" to={`/detail/${derby_player.id}`} key={`${derby_player.id}-${derby_player.derby_name}`}>
-                <div style={{ margin: 5, padding: 5, border: 'solid 3px purple'}}>
-                {derby_player.derby_name} : {derby_player.jersey_number} : {derby_player.is_retired ? 'Yes' : 'No'} : {derby_player.position}
+                <div className="single_player">
+                  <label>Derby Name: {derby_player.derby_name}</label>
+                  <label>Jersey Number: {derby_player.jersey_number}</label>
+                  <label>Currently Retired?: {derby_player.is_retired ? 'Yes' : 'No'}</label>
+                  <label>Player Position: {derby_player.player_position}</label>
               </div>
               </Link>
             })

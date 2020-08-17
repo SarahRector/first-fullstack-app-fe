@@ -4,7 +4,7 @@ import { fetchDerbyPlayer, deleteDerbyPlayer, updateDerbyPlayer, fetchPositions 
 export default class DetailsPage extends Component {
     state = {
         derby_player: {},
-        derby_name: 'Smarty Pants',
+        derby_name: '',
         jersey_number: 5,
         is_retired: true,
         position_id: 1,

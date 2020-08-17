@@ -8,6 +8,7 @@ import {
 import ListPage from './ListPage.js';
 import CreatePage from './CreatePage.js';
 import DetailsPage from './DetailsPage.js';
+import skate from './pngguru.com.png';
 import './App.css';
 
 export default class App extends Component {
@@ -21,6 +22,7 @@ export default class App extends Component {
                     <div className="sidebar">
                     <Link to='/create'>Create</Link>
                     <Link to='/'>List</Link>
+                    <img src={skate} className="skate" alt="a black skate with purple wheels"/>
                     </div>
                     <div className="content">
                     <Switch>
